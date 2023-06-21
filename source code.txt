@@ -1,0 +1,17 @@
+#!/bin/bash
+
+generate_password() {
+  local length=$1  # Desired password length
+
+  # Define the character set for generating the password
+  local all_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{};:,.<>?~"
+
+  # Generate the password
+  local password=$(tr -dc "${all_chars}" < /dev/urandom | head -c "${length}")
+
+  echo "${password}"
+}
+
+# Usage: generate_password <length>
+password=$(generate_password 12)
+echo "Generated Password: ${password}"
